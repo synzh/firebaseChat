@@ -4,7 +4,7 @@ from time import strftime,localtime
 from collections import OrderedDict
 
 """ Get Method """
-status = subprocess.check_output(["curl","-s","https://zero99.firebaseio.com/users/jack/name.json"])
+status = subprocess.check_output(["curl","-s","https://UseYourOwn.firebaseio.com/users/jack/name.json"])
 print status + "\n"
 
 """ To set formatted time """
@@ -16,18 +16,18 @@ while True:
    y = "{\"user_id\" : \" " + User_id + " \" , \"text\" :\" " + Text_ss + " \"  , \"time\" : \" "  + xRecTime + " \" }"
    print "y= " + y
 
-   push_data = subprocess.check_output(["curl","-s","-X POST","-d",y,"https://zero99.firebaseio.com/message_list.json"])
+   push_data = subprocess.check_output(["curl","-s","-X POST","-d",y,"https://UseYourOwn.firebaseio.com/message_list.json"])
    print "pushed: " + push_data + "\n"
 
    """ Get method to fectch data from firebase """
-   status = json.loads(subprocess.check_output(["curl","-s","https://zero99.firebaseio.com/message_list.json"]))
+   status = json.loads(subprocess.check_output(["curl","-s","https://UseYourOwn.firebaseio.com/message_list.json"]))
    status = OrderedDict(sorted(status.items(), key=lambda t:t[0]))
    print status
 
    """ Loop for json format output """
    for FirstKey, FirstValue in status.iteritems():
     # print FirstKey
-    #delstatus = subprocess.check_output(["curl","-s","-X DELETE","https://zero99.firebaseio.com/message_list/" + FirstKey + ".json"])
+    #delstatus = subprocess.check_output(["curl","-s","-X DELETE","https://UseYourOwn.firebaseio.com/message_list/" + FirstKey + ".json"])
     #print "deleted: " + delstatus 
        temp = ""
        for SecondKey, SecondValue in FirstValue.iteritems():
